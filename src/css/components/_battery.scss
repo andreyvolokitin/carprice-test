@@ -1,0 +1,37 @@
+$_battery-pimple-size: .2em;
+
+.battery__progress {
+  position: relative;
+  display: inline-block;
+  top: .04em;
+  height: .8em;
+  width: 1.8em;
+  margin-left: .6em;
+  border: 1px solid currentColor;
+  box-sizing: border-box;
+  border-radius: $_battery-pimple-size;
+  }
+.battery__progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: currentColor;
+  }
+.battery__progress::after {
+  content: '';
+  position: absolute;
+  top: 27.5%;
+  width: $_battery-pimple-size;
+  height: 40%;
+  right: -$_battery-pimple-size;
+  background: currentColor;
+  }
+
+// adjust for edgeHTML & IE 11
+_:-ms-lang(x), _:-webkit-full-screen, .battery__progress::after {
+  top: 29%;
+  }
+_:-ms-fullscreen, :root .battery__progress::after {
+  top: 29%;
+  }

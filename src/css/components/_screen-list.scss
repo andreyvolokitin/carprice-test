@@ -1,0 +1,67 @@
+$_screen-list-bottom-gap: 30px;
+
+.screen-list,
+.screen-list__inner,
+.screen-list__swiper,
+.screen-list__paging,
+.screen-list__nav {
+  position: absolute;
+  bottom: 0;
+  }
+.screen-list,
+.screen-list__inner,
+.screen-list__swiper {
+  top: 0;
+  left: 0;
+  right: 0;
+  }
+
+.screen-list {
+  will-change: opacity;
+  opacity: 0;
+  }
+.screen-list.is-ready {
+  opacity: 1;
+  transition: opacity .2s ease-out;
+  }
+
+.screen-list__swiper {
+  padding: 16px $gap-x-primary 0;
+  margin-bottom: $_screen-list-bottom-gap;
+  overflow: hidden;
+
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    padding-left: $gap-x-primary_gte-bp990px;
+    padding-right: $gap-x-primary_gte-bp990px;
+    }
+  }
+
+.screen-list__paging {
+  z-index: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  }
+
+.screen-list__paging .swiper-pagination-bullet {
+  background: #fff;
+  margin: 0 5px 5px;
+  }
+
+.screen-list__nav {
+  @include btn-reset;
+
+  z-index: 1;
+  width: 50%;
+  height: $_screen-list-bottom-gap;
+  }
+.screen-list__nav_prev {
+  left: 0;
+  }
+.screen-list__nav_next {
+  right: 0;
+  }
+.screen-list__nav.swiper-button-disabled {
+  cursor: default;
+  }

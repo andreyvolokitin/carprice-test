@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  }
+// ie11: flexbox is too buggy with `min-height`
+_:-ms-fullscreen, :root .wrapper {
+  display: table;
+  }
+_:-ms-fullscreen, :root .wrapper__inner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  }
+_:-ms-fullscreen, :root .wrapper__inner-i {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  }

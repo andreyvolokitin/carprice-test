@@ -1,0 +1,36 @@
+.dock {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  }
+
+.dock__item {
+  margin: 0 2px;
+  }
+
+// 4 icons on narrow screens
+.dock__item:nth-child(4) ~ .dock__item {
+  display: none;
+  }
+
+// 8 icons on medium screens
+@media screen and (min-width: bp(bp824px)) {
+  /* iphone landscape state */
+  .dock__item:nth-child(4) ~ .dock__item {
+    display: block;
+    }
+  .dock__item:nth-child(8) ~ .dock__item {
+    display: none;
+    }
+  }
+
+// 11 icons on wide screens
+@media screen and (min-width: bp(bp1276px)) {
+  /* ipad landscape state */
+  .dock__item:nth-child(8) ~ .dock__item {
+    display: block;
+    }
+  .dock__item:nth-child(11) ~ .dock__item {
+    display: none;
+    }
+  }

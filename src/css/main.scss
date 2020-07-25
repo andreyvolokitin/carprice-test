@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. Base stuff
+
+/*
+==========================================================================
+Base
+==========================================================================
+*/
+
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/typography';
+@import 'base/helpers';
+
+// 3. Layout-related sections
+
+/*
+==========================================================================
+Layout
+==========================================================================
+*/
+
+// 4. Components
+
+/*
+==========================================================================
+Components
+==========================================================================
+*/
+@import 'components/wrapper';
+@import 'components/mutant-device';
+@import 'components/OS';
+@import 'components/spinner';
+@import 'components/service';
+@import 'components/time';
+@import 'components/battery';
+@import 'components/app-thumbnail';
+@import 'components/app-grid';
+@import 'components/screen-list';
+@import 'components/dock';
+
+// 5. Page-specific styles
+
+/*
+==========================================================================
+Page-specific styles
+==========================================================================
+*/
+
+//@import 'pages/home';
+
+// 6. Themes
+
+/*
+==========================================================================
+Themes
+==========================================================================
+*/
+
+//@import 'themes/default';
+
+// 7. Helpers which needs to be placed at the bottom of the file
+// to allow overwriting previously declared styles
+
+/*
+==========================================================================
+Helpers
+==========================================================================
+*/
+@import 'base/helpers_specificity-sensitive';
+
+
+// 8. Print styles
+
+/*
+==========================================================================
+Print styles
+==========================================================================
+*/
+
+@import 'print';

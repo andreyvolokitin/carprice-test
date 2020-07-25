@@ -1,0 +1,73 @@
+$_icon-line-height: 1.4;
+$_icon-pic-offset: 6%;
+
+.app-thumbnail {
+  @include btn-reset;
+
+  text-align: center;
+  color: inherit;
+  font-size: 12px;
+  line-height: $_icon-line-height;
+  width: $app-thumb-width-portrait;
+  vertical-align: top;
+
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    width: $app-thumb-width-landscape;
+    }
+  }
+
+.app-thumbnail__icon,
+.app-thumbnail__pic,
+.app-thumbnail__label {
+  display: block;
+  }
+
+.app-thumbnail__icon {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  }
+
+.app-thumbnail__icon::before,
+.app-thumbnail__pic {
+  position: absolute;
+  border-radius: 21%;
+  transition: opacity .5s .4s;
+  will-change: opacity;
+  }
+
+.app-thumbnail__icon::before {
+  content: '';
+  z-index: 0;
+  left: $_icon-pic-offset;
+  top: $_icon-pic-offset;
+  right: $_icon-pic-offset;
+  bottom: $_icon-pic-offset;
+  background-color: rgba(80, 80, 80, 0.19);
+  opacity: 1;
+  }
+
+.app-thumbnail__pic {
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  }
+
+.app-thumbnail.is-ready .app-thumbnail__icon::before {
+  opacity: 0;
+  }
+
+.app-thumbnail.is-ready .app-thumbnail__pic {
+  opacity: 1;
+  }
+
+.app-thumbnail__label {
+  position: relative;
+  height: #{$_icon-line-height * 1}em; //allow only 1 line for app label
+  overflow: hidden;
+  }

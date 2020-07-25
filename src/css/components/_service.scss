@@ -1,0 +1,19 @@
+$_service-mark-size: .333em;
+
+.service__signal {
+  display: inline-block;
+  margin-right: .4em;
+  }
+.service__signal-mark {
+  display: inline-block;
+  position: relative;
+  top: -.1em;
+  width: $_service-mark-size;
+  height: $_service-mark-size;
+  border: 1px solid currentColor;
+  margin-right: .1666em;
+  border-radius: 50%;
+  }
+.service__signal-mark.is-active {
+  background-color: currentColor;
+  }

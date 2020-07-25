@@ -1,0 +1,57 @@
+$_app-grid-portrait-columns: 4;
+$_app-grid-landscape-columns: 5;
+
+$_app-grid-portrait-column-width: percentage(1 / $_app-grid-portrait-columns);
+$_app-grid-landscape-column-width: percentage(1 / $_app-grid-landscape-columns);
+
+$_app-grid-portrait-shift: calc(-#{percentage(1 / $_app-grid-portrait-columns) / 2} + (#{$app-thumb-width-portrait} / 2));
+$_app-grid-landscape-shift: calc(-#{percentage(1 / $_app-grid-landscape-columns) / 2} + (#{$app-thumb-width-portrait} / 2));
+
+.app-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: $_app-grid-portrait-shift;
+  margin-right: $_app-grid-portrait-shift;
+
+  @media screen and (min-width: bp(bp824px)) {
+    /* iphone landscape state */
+    margin-left: $_app-grid-landscape-shift;
+    margin-right: $_app-grid-landscape-shift;
+    }
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    margin-left: $_app-grid-portrait-shift;
+    margin-right: $_app-grid-portrait-shift;
+    }
+  @media screen and (min-width: bp(bp1276px)) {
+    /* ipad landscape state */
+    margin-left: $_app-grid-landscape-shift;
+    margin-right: $_app-grid-landscape-shift;
+    }
+  }
+
+.app-grid__item {
+  width: $_app-grid-portrait-column-width;
+  text-align: center;
+  margin-bottom: 3%;
+
+  @media screen and (min-width: bp(bp824px)) {
+    /* iphone landscape state */
+    width: $_app-grid-landscape-column-width;
+    }
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    margin-bottom: 5%;
+    width: $_app-grid-portrait-column-width;
+    }
+  @media screen and (min-width: bp(bp1276px)) {
+    /* ipad landscape state */
+    width: $_app-grid-landscape-column-width;
+    }
+  }
+
+.app-grid__item.sortable-ghost,
+.app-grid__item.sortable-chosen .app-grid__thumb {
+  opacity: .5;
+  }
+

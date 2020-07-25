@@ -1,0 +1,306 @@
+$_mutant-device-buttons-thickness: 4px;
+$_mutant-device-buttons-radius: $_mutant-device-buttons-thickness / 2;
+$_mutant-device-frame-width: 3px;
+$_mutant-device-outside-padding: $_mutant-device-buttons-thickness + $_mutant-device-frame-width;
+$_mutant-device-ui-color: #757575;
+
+$_mutant-device-iphone-screen-width: 320px;
+$_mutant-device-iphone-screen-height: 568px;
+$_mutant-device-ipad-screen-width: 768px;
+$_mutant-device-ipad-screen-height: 1024px;
+
+.mutant-device {
+  display: table; // https://stackoverflow.com/a/47860039/718630
+  }
+.mutant-device_spaced {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  }
+
+.mutant-device__inner {
+  overflow: hidden;
+  padding: 0 1000px;
+  margin: 0 -1000px;
+
+  // https://stackoverflow.com/a/47860039/718630
+  @media screen and (min-width: bp(bp824px)) {
+    /* iphone landscape state */
+    padding-top: 50%;
+    padding-bottom: 50%;
+    height: 0;
+    }
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    }
+  @media screen and (min-width: bp(bp1276px)) {
+    /* ipad landscape state */
+    padding-top: 50%;
+    padding-bottom: 50%;
+    height: 0;
+    }
+  }
+
+$_mutant-device-iphone-padding-top: 111px + $_mutant-device-outside-padding;
+$_mutant-device-iphone-padding-horizontal: 26px + $_mutant-device-outside-padding;
+$_mutant-device-iphone-padding-bottom: 113px + $_mutant-device-outside-padding;
+
+$_mutant-device-ipad-padding-top: 106px + $_mutant-device-outside-padding;
+$_mutant-device-ipad-padding-horizontal: 96px + $_mutant-device-outside-padding;
+$_mutant-device-ipad-padding-bottom: 120px + $_mutant-device-outside-padding;
+
+.mutant-device__device {
+  /* iphone portrait state */
+  position: relative;
+  z-index: 0;
+  padding: #{$_mutant-device-iphone-padding-top} #{$_mutant-device-iphone-padding-horizontal} #{$_mutant-device-iphone-padding-bottom};
+
+  @media screen and (min-width: bp(bp824px)) {
+    /* iphone landscape state */
+    transform-origin: top left;
+    transform: rotate(-90deg) translate(-100%, #{(($_mutant-device-iphone-padding-horizontal * 2 + $_mutant-device-iphone-screen-width) - ($_mutant-device-iphone-padding-top + $_mutant-device-iphone-padding-bottom + $_mutant-device-iphone-screen-height)) / 2});
+    margin-top: -50%;
+    }
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    transform: rotate(0);
+    padding: #{$_mutant-device-ipad-padding-top} #{$_mutant-device-ipad-padding-horizontal} #{$_mutant-device-ipad-padding-bottom};
+    margin-top: 0;
+    }
+  @media screen and (min-width: bp(bp1276px)) {
+    /* ipad landscape state */
+    transform: rotate(-90deg) translate(-100%, #{(($_mutant-device-ipad-padding-horizontal * 2 + $_mutant-device-ipad-screen-width) - ($_mutant-device-ipad-padding-top + $_mutant-device-ipad-padding-bottom + $_mutant-device-ipad-screen-height)) / 2});
+    margin-top: -50%;
+    }
+  }
+
+.mutant-device__device::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: $_mutant-device-buttons-thickness;
+  top: $_mutant-device-buttons-thickness;
+  right: $_mutant-device-buttons-thickness;
+  bottom: $_mutant-device-buttons-thickness;
+  border: $_mutant-device-frame-width solid $_mutant-device-ui-color;
+  border-radius: 50px;
+  background: #fff;
+  }
+
+.mutant-device__screen {
+  /* ipone portrait state */
+  position: relative;
+  z-index: 0;
+  width: $_mutant-device-iphone-screen-width;
+  height: $_mutant-device-iphone-screen-height;
+  background: #c8c8c8;
+
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    width: $_mutant-device-ipad-screen-width;
+    height: $_mutant-device-ipad-screen-height;
+    }
+  }
+
+.mutant-device__screen-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  @media screen and (min-width: bp(bp824px)) {
+    /* iphone landscape state */
+    transform: rotate(90deg);
+    transform-origin: top left;
+    width: $_mutant-device-iphone-screen-height;
+    height: $_mutant-device-iphone-screen-width;
+    left: $_mutant-device-iphone-screen-width;
+    }
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    transform: rotate(0);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    }
+  @media screen and (min-width: bp(bp1276px)) {
+    /* ipad landscape state */
+    transform: rotate(90deg);
+    transform-origin: top left;
+    width: $_mutant-device-ipad-screen-height;
+    height: $_mutant-device-ipad-screen-width;
+    left: $_mutant-device-ipad-screen-width;
+    }
+  }
+
+.mutant-device__power-btn,
+.mutant-device__handler,
+.mutant-device__camera,
+.mutant-device__speaker,
+.mutant-device__sensor,
+.mutant-device__home-btn {
+  position: absolute;
+  z-index: 1;
+  }
+
+.mutant-device__power-btn,
+.mutant-device__handler,
+.mutant-device__home-btn {
+  @include btn-reset;
+  }
+
+.mutant-device__power-btn,
+.mutant-device__handler,
+.mutant-device__power-btn::before,
+.mutant-device__handler::before {
+  background: $_mutant-device-ui-color;
+  border-radius: $_mutant-device-buttons-radius $_mutant-device-buttons-radius 0 0;
+  }
+
+.mutant-device__power-btn,
+.mutant-device__handler {
+  height: $_mutant-device-buttons-thickness;
+  }
+
+// .5px shift to accommodate rounding errors in edge/ie resulting in a gap between buttons and frame
+$_mutant-device-btn-fix-shift: .5px;
+.mutant-device__power-btn::before,
+.mutant-device__handler::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: -$_mutant-device-btn-fix-shift;
+  right: 0;
+  }
+
+
+.mutant-device__power-btn {
+  width: 60px;
+  top: 0;
+  right: 60px;
+  }
+
+$_mutant-device-handler-main-width: 35px;
+$_mutant-device-handler-width: 27px;
+$_mutant-device-handler-gap: 40px;
+
+.mutant-device__handler {
+  left: 0;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  width: $_mutant-device-handler-width;
+  }
+
+.mutant-device__handler_main {
+  width: $_mutant-device-handler-main-width;
+  margin-top: $_mutant-device-handler-main-width;
+  }
+
+@for $i from 1 through 2 {
+  .mutant-device__handler_#{$i} {
+    margin-top: $_mutant-device-handler-main-width + ($i * ($_mutant-device-handler-width + $_mutant-device-handler-gap));
+    }
+  }
+
+.mutant-device__camera,
+.mutant-device__speaker,
+.mutant-device__sensor,
+.mutant-device__home-btn {
+  left: 50%;
+  transform: translate(-50%, 0);
+  }
+
+$_mutant-device-camera-size: 16px;
+$_mutant-device-camera-inner-size: 50%;
+
+.mutant-device__camera,
+.mutant-device__camera::before {
+  border-radius: 100%;
+  }
+
+.mutant-device__camera {
+  top: 27px + $_mutant-device-outside-padding;
+  width: $_mutant-device-camera-size;
+  height: $_mutant-device-camera-size;
+  background: $_mutant-device-ui-color;
+
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    top: 40px + $_mutant-device-outside-padding;
+    }
+  }
+
+.mutant-device__camera::before {
+  content: '';
+  position: absolute;
+  border: 1px solid lighten($_mutant-device-ui-color, 44.71);
+  width: $_mutant-device-camera-inner-size;
+  height: $_mutant-device-camera-inner-size;
+  left: calc(#{$_mutant-device-camera-size / 2} - #{$_mutant-device-camera-inner-size / 2});
+  top: calc(#{$_mutant-device-camera-size / 2} - #{$_mutant-device-camera-inner-size / 2});
+  box-sizing: border-box;
+  }
+
+$_mutant-device-speaker-width: 70px;
+$_mutant-device-speaker-height: 15px;
+$_mutant-device-speaker-top-position: 58px;
+
+.mutant-device__speaker,
+.mutant-device__sensor {
+  @media screen and (min-width: bp(bp990px)) {
+    /* ipad portrait state */
+    display: none;
+    }
+  }
+
+.mutant-device__speaker {
+  top: $_mutant-device-speaker-top-position + $_mutant-device-outside-padding;
+  width: $_mutant-device-speaker-width;
+  height: $_mutant-device-speaker-height;
+  border-radius: #{$_mutant-device-speaker-height} / 100%;
+  border: 2px solid $_mutant-device-ui-color;
+  box-sizing: border-box;
+  }
+
+$_mutant-device-sensor-size: 6px;
+$_mutant-device-sensor-gap: 13px;
+
+.mutant-device__sensor {
+  top: $_mutant-device-speaker-top-position + $_mutant-device-outside-padding - ($_mutant-device-sensor-size / 2) + ($_mutant-device-speaker-height / 2);
+  margin-left: -(($_mutant-device-speaker-width / 2) + ($_mutant-device-sensor-size / 2) + $_mutant-device-sensor-gap);
+  width: $_mutant-device-sensor-size;
+  height: $_mutant-device-sensor-size;
+  background: $_mutant-device-ui-color;
+  border-radius: 100%;
+  }
+
+$_mutant-device-home-btn-size: 70px;
+$_mutant-device-home-btn-icon-size: 28px;
+
+.mutant-device__home-btn,
+.mutant-device__home-btn::before {
+  border: 2px solid $_mutant-device-ui-color;
+  box-sizing: border-box;
+  }
+
+.mutant-device__home-btn {
+  bottom: 21px + $_mutant-device-outside-padding;
+  width: $_mutant-device-home-btn-size;
+  height: $_mutant-device-home-btn-size;
+  border-radius: 100%;
+  }
+
+.mutant-device__home-btn::before {
+  content: '';
+  position: absolute;
+  width: $_mutant-device-home-btn-icon-size;
+  height: $_mutant-device-home-btn-icon-size;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+  }
